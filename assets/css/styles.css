@@ -1,0 +1,254 @@
+/* Estilos base */
+body {
+    margin: 0;
+}
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto; 
+    grid-template-columns: 200px 1fr; 
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;/* Aplicar flexbox */
+    align-items: center;
+}
+
+.logo {
+    img {
+    max-width: 150px;
+    margin: -5%;
+    animation: spinFade 3s infinite; /* La animación dura 3 segundos, es lineal y se repite infinitamente */
+    transform-origin: center; /* Define el punto de origen de la rotación en el centro del logo */
+}
+    }
+  
+@keyframes spinFade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+.custom-selec {
+    box-shadow: 0 10px 25px black;
+    font-size: 1rem;
+    padding: 1em 1.5em;
+    background-color: #333;
+    color: white;
+    margin-left: 2rem;
+    
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #666;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    .fa-bars {
+        display: none;
+    }
+    .sidebar-list {
+        list-style-type: none;
+
+    }
+    .sidebar-list li {
+        margin: 10px;
+       
+    }
+    .sidebar-list li:hover {
+        animation: scaleHover 0.3s ease;
+    }
+}
+/* Define la animación */
+@keyframes scaleHover {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.2);
+    }
+  }
+  
+
+.main {
+    grid-area: main;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.card {
+    flex: 1 0 calc(25% - 10px); 
+    background-color: #ccc;
+    padding: 20px;
+}
+
+.card img {
+    height: 70%;
+    width: 100%;
+}
+
+.imagen-card {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%; /* Ajustar al tamaño del contenedor */
+    animation: slideFromRight 2s ease forwards; /* Animación de entrada */
+    opacity: 0; /* Inicialmente invisible */
+  }
+  
+  .imagen-card:hover {
+    animation: slideFromRight 2s ease forwards; /* Animación al pasar el cursor */
+  }
+  
+  @keyframes slideFromRight {
+    from {
+      transform: translateX(100%); /* Comienza fuera de la vista hacia la derecha */
+      opacity: 0; /* Opacidad inicial */
+    }
+    to {
+      transform: translateX(0); /* Se desplaza hacia la izquierda */
+      opacity: 1; /* Opacidad final */
+    }
+  }
+  
+
+.card button {
+    border-radius: 40%;
+    padding: 5px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    a, i {
+        color: #f0f0f0;
+        text-decoration: none;
+        margin: 6px;
+        animation: socialOut 1s ease forwards alternate;
+    }
+}
+
+.footer a, i:hover {
+    animation: socialIn 1s ease forwards;
+}
+
+@keyframes socialIn {
+    0% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes socialOut {
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+
+/* Media query para dispositivos de escritorio */
+
+@media only screen and (max-width: 575px) {
+    .container {
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+        grid-template-rows: auto auto 1fr auto; 
+        grid-template-columns: 1fr; 
+    }
+
+    .sidebar {
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+    }
+
+    .main {
+        padding: 10px;
+    }
+}
+/* Media query para versión móvil */
+
+@media only screen and (max-width: 575px) {
+    .container {
+        grid-template-areas:
+            "sidebar"
+            "header"
+            "main"
+            "footer";
+        grid-template-rows: auto auto auto auto; 
+        grid-template-columns: 1fr; 
+        }
+
+    .sidebar {
+        grid-area: sidebar; 
+        background-color: #666;
+        color: white;
+        padding: 10px;
+        width: 100%; 
+        justify-content: space-around;
+        .fa-bars {
+            display: block;
+        }
+        .sidebar-list {
+            display: none;
+        }
+    }
+
+    .header {
+        grid-area: header;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        width: 100%; 
+    }
+
+    .main {
+        grid-area: main;
+        background-color: #f0f0f0;
+        padding: 10px;
+        width: 100%; 
+    }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: calc(100% - 20px); 
+        margin: 0 auto; 
+    }
+
+    .card {
+        flex: 1 0 calc(50% - 10px); 
+    }
+}
