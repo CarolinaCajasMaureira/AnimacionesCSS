@@ -2,6 +2,7 @@
 body {
     margin: 0;
 }
+
 .container {
     display: grid;
     grid-template-areas:
@@ -18,19 +19,17 @@ body {
     background-color: #333;
     color: white;
     padding: 10px;
-    display: flex;/* Aplicar flexbox */
+    display: flex;
     align-items: center;
 }
 
-.logo {
-    img {
+.logo img {
     max-width: 150px;
     margin: -5%;
-    animation: spinFade 3s infinite; /* La animación dura 3 segundos, es lineal y se repite infinitamente */
-    transform-origin: center; /* Define el punto de origen de la rotación en el centro del logo */
+    animation: spinFade 3s infinite;
+    transform-origin: center; 
 }
-    }
-  
+
 @keyframes spinFade {
     0% {
       opacity: 0;
@@ -38,7 +37,7 @@ body {
     100% {
       opacity: 1;
     }
-  }
+}
 
 .custom-selec {
     box-shadow: 0 10px 25px black;
@@ -57,31 +56,47 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    .fa-bars {
-        display: none;
-    }
-    .sidebar-list {
-        list-style-type: none;
-
-    }
-    .sidebar-list li {
-        margin: 10px;
-       
-    }
-    .sidebar-list li:hover {
-        animation: scaleHover 0.3s ease;
-    }
 }
-/* Define la animación */
-@keyframes scaleHover {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.2);
-    }
-  }
-  
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+.sidebar i.animated {
+    animation: bounce 1s infinite;
+}
+
+.sidebar i.fa-hat-wizard {
+    color: purple; 
+    font-size: 1.4em; 
+}
+
+
+.fa-bars {
+    display: none;
+}
+
+.sidebar-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: center; 
+}
+
+.sidebar-list li {
+    margin: 10px;
+}
+
+.sidebar-list li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar-list li a:hover {
+    color: #ff9800;
+}
 
 .main {
     grid-area: main;
@@ -111,26 +126,25 @@ body {
 .imagen-card {
     position: relative;
     overflow: hidden;
-    max-width: 100%; /* Ajustar al tamaño del contenedor */
-    animation: slideFromRight 2s ease forwards; /* Animación de entrada */
-    opacity: 0; /* Inicialmente invisible */
-  }
-  
-  .imagen-card:hover {
-    animation: slideFromRight 2s ease forwards; /* Animación al pasar el cursor */
-  }
-  
-  @keyframes slideFromRight {
+    max-width: 100%; 
+    animation: slideFromRight 2s ease forwards; 
+    opacity: 0; 
+}
+
+.imagen-card:hover {
+    animation: slideFromRight 2s ease forwards; 
+}
+
+@keyframes slideFromRight {
     from {
-      transform: translateX(100%); /* Comienza fuera de la vista hacia la derecha */
-      opacity: 0; /* Opacidad inicial */
+      transform: translateX(100%); 
+      opacity: 0; 
     }
     to {
-      transform: translateX(0); /* Se desplaza hacia la izquierda */
-      opacity: 1; /* Opacidad final */
+      transform: translateX(0); 
+      opacity: 1; 
     }
-  }
-  
+}
 
 .card button {
     border-radius: 40%;
@@ -143,15 +157,16 @@ body {
     color: white;
     padding: 10px;
     text-align: center;
-    a, i {
-        color: #f0f0f0;
-        text-decoration: none;
-        margin: 6px;
-        animation: socialOut 1s ease forwards alternate;
-    }
 }
 
-.footer a, i:hover {
+.footer a, .footer i {
+    color: #f0f0f0;
+    text-decoration: none;
+    margin: 6px;
+    animation: socialOut 1s ease forwards alternate;
+}
+
+.footer a:hover, .footer i:hover {
     animation: socialIn 1s ease forwards;
 }
 
@@ -173,9 +188,7 @@ body {
     }
 }
 
-
 /* Media query para dispositivos de escritorio */
-
 @media only screen and (max-width: 575px) {
     .container {
         grid-template-areas:
@@ -197,8 +210,8 @@ body {
         padding: 10px;
     }
 }
-/* Media query para versión móvil */
 
+/* Media query para versión móvil */
 @media only screen and (max-width: 575px) {
     .container {
         grid-template-areas:
@@ -208,7 +221,7 @@ body {
             "footer";
         grid-template-rows: auto auto auto auto; 
         grid-template-columns: 1fr; 
-        }
+    }
 
     .sidebar {
         grid-area: sidebar; 
@@ -217,12 +230,14 @@ body {
         padding: 10px;
         width: 100%; 
         justify-content: space-around;
-        .fa-bars {
-            display: block;
-        }
-        .sidebar-list {
-            display: none;
-        }
+    }
+
+    .fa-bars {
+        display: block;
+    }
+
+    .sidebar-list {
+        display: none;
     }
 
     .header {
